@@ -11,6 +11,6 @@ jobs:
       uses: actions/checkout@master
     - name: Build Docker Image
       run: |
-        go run main.go build -u${{ ALIYUN_U }} -p${{ ALIYUN_P }}
-        go run main.go build -u${{ _GITHUB_U }} -p${{ _GITHUB_P }} -r ghcr.io -o goudai-projects
+        go run main.go build -u${{ secrets.ALIYUN_U }} -p${{ secrets.ALIYUN_P }}
+        go run main.go build -u${{ secrets._GITHUB_U }} -p${{ secrets._GITHUB_P }} -r ghcr.io -o goudai-projects
 
