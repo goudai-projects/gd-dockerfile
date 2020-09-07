@@ -42,14 +42,20 @@ var buildCmd = &cobra.Command{
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		ds := make([]string, 0)
-		r := GetFlagValue(cmd, "registry", "registry.cn-shanghai.aliyuncs.com")
-		o := GetFlagValue(cmd, "origin", "qingmuio")
+		//"registry.cn-shanghai.aliyuncs.com"
+		r := GetFlagValue(cmd, "registry", viper.GetString("IMAGE_REGISTRY"))
+		o := GetFlagValue(cmd, "origin", viper.GetString("IMAGE_ORIGIN"))
 		u := GetFlagValue(cmd, "username", viper.GetString("DOCKER_USERNAME"))
 		p := GetFlagValue(cmd, "password", viper.GetString("DOCKER_PASSWORD"))
-		a := GetFlagValue(cmd, "application", "")
-		v := GetFlagValue(cmd, "application-version", "")
+		a := GetFlagValue(cmd, "application", viper.GetString("IMAGE_APPLICATION"))
+		v := GetFlagValue(cmd, "application-version", viper.GetString("IMAGE_APPLICATION_VERESION"))
 		root := "./dockerfile"
-
+		if r == "" {
+			r = "registry.cn-shanghai.aliyuncs.com"
+		}
+		if o == "" {
+			o = "qingmuio"
+		}
 		if a != "" {
 			root += "/" + a
 			if v != "" {
