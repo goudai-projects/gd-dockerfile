@@ -1,6 +1,0 @@
-#!/bin/bash
-topics=(live-live-coin-payment)
-for topic in ${topics[*]}
-do
-JMX_PORT=10000 bin/kafka-topics.sh  --zookeeper zk-kafka-1:2181,zk-kafka-2:2181,zk-kafka-3:2181 --partitions 30 --replication-factor 3 --topic "live-live-coin-payment" --if-not-exists --create
-done
